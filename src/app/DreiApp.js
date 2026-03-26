@@ -175,7 +175,7 @@ function Header({ page, setPage, user }) {
         <span style={{ color: COLORS.white, fontWeight: 700, fontSize: 18, letterSpacing: 2 }}>DREI</span>
       </div>
       <nav style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-        {[["Courses", "courses"], ["Expert Modules", "experts"], ["Progress", "progress"]].map(([label, p]) => (
+        {[["Courses", "courses"], ["Expert Modules", "experts"], ["Progress", "progress"], ["Dashboard", "dashboard"]].map(([label, p]) => (
           <button key={p} onClick={() => setPage(p)} style={{ background: "none", border: "none", color: page === p ? COLORS.primary : "rgba(255,255,255,0.7)", cursor: "pointer", fontSize: 14, fontWeight: page === p ? 700 : 400, padding: "4px 0", borderBottom: page === p ? `2px solid ${COLORS.primary}` : "2px solid transparent" }}>{label}</button>
         ))}
         {user ? (
@@ -420,6 +420,161 @@ function Progress({ user, completed }) {
   );
 }
 
+// ─── MOCK ORGANISATION DATA ──────────────────────────────────────
+const MOCK_ORG = {
+  name: "Launceston Rowing Club",
+  coaches: [
+    { id: "34821", name: "Sarah Mitchell", role: "Senior Coach", joined: "2025-11",
+      completed: { 1: {score:0,total:0}, 2: {score:0,total:0}, 3: {score:0,total:0}, 4: {score:0,total:0}, 5: {score:0,total:0}, 6: {score:0,total:0}, 7: {score:0,total:0}, 8: {score:0,total:0}, 9: {score:0,total:0}, 10: {score:0,total:0}, 11: {score:0,total:0}, 12: {score:0,total:0}, 101: {score:5,total:5}, 102: {score:4,total:5}, 103: {score:5,total:5}, 104: {score:3,total:5}, 105: {score:4,total:5}, 201: {score:4,total:5}, 204: {score:5,total:5} } },
+    { id: "41205", name: "James Chen", role: "Assistant Coach", joined: "2026-01",
+      completed: { 1: {score:0,total:0}, 2: {score:0,total:0}, 3: {score:0,total:0}, 4: {score:0,total:0}, 5: {score:0,total:0}, 6: {score:0,total:0}, 7: {score:0,total:0}, 8: {score:0,total:0}, 9: {score:0,total:0}, 101: {score:4,total:5}, 102: {score:3,total:5} } },
+    { id: "55032", name: "Meg O'Brien", role: "Junior Coach", joined: "2026-02",
+      completed: { 1: {score:0,total:0}, 2: {score:0,total:0}, 3: {score:0,total:0}, 4: {score:0,total:0}, 5: {score:0,total:0}, 101: {score:5,total:5}, 102: {score:5,total:5}, 103: {score:4,total:5} } },
+    { id: "62718", name: "Tom Bradley", role: "Volunteer Coach", joined: "2026-03",
+      completed: { 1: {score:0,total:0}, 2: {score:0,total:0}, 3: {score:0,total:0} } },
+    { id: "78943", name: "Rachel Dunn", role: "Assistant Coach", joined: "2025-12",
+      completed: { 1: {score:0,total:0}, 2: {score:0,total:0}, 3: {score:0,total:0}, 4: {score:0,total:0}, 5: {score:0,total:0}, 6: {score:0,total:0}, 7: {score:0,total:0}, 8: {score:0,total:0}, 9: {score:0,total:0}, 10: {score:0,total:0}, 11: {score:0,total:0}, 12: {score:0,total:0}, 101: {score:4,total:5}, 102: {score:5,total:5}, 103: {score:4,total:5}, 104: {score:5,total:5}, 105: {score:5,total:5}, 206: {score:4,total:5}, 207: {score:5,total:5}, 208: {score:3,total:5} } },
+    { id: "81456", name: "Liam Foster", role: "Junior Coach", joined: "2026-01",
+      completed: { 1: {score:0,total:0}, 2: {score:0,total:0} } },
+  ]
+};
+
+function OrgDashboard({ setPage }) {
+  const [selectedCoach, setSelectedCoach] = useState(null);
+  const org = MOCK_ORG;
+  const allLessons = [...BEGINNER_LESSONS, ...ERGO_LESSONS, ...EXPERT_MODULES.filter(m => m.text)];
+  const totalModules = allLessons.length;
+
+  const getCoachStats = (coach) => {
+    const done = Object.keys(coach.completed).length;
+    const quizzed = Object.values(coach.completed).filter(v => v.total > 0);
+    const avgScore = quizzed.length > 0 ? Math.round(quizzed.reduce((s, v) => s + (v.score / v.total) * 100, 0) / quizzed.length) : null;
+    const beginnerDone = BEGINNER_LESSONS.filter(l => coach.completed[l.id]).length;
+    const ergoDone = ERGO_LESSONS.filter(l => coach.completed[l.id]).length;
+    const expertDone = EXPERT_MODULES.filter(m => m.text && coach.completed[m.id]).length;
+    return { done, avgScore, beginnerDone, ergoDone, expertDone };
+  };
+
+  const Bar = ({ done, total, color }) => (
+    <div style={{ height: 6, borderRadius: 3, background: "#e8ecf1", overflow: "hidden", flex: 1 }}>
+      <div style={{ height: "100%", borderRadius: 3, background: color, width: `${total > 0 ? (done / total) * 100 : 0}%`, transition: "width 0.3s" }} />
+    </div>
+  );
+
+  if (selectedCoach) {
+    const coach = org.coaches.find(c => c.id === selectedCoach);
+    const stats = getCoachStats(coach);
+    return (
+      <div style={{ maxWidth: 760, margin: "40px auto", padding: "0 24px" }}>
+        <button onClick={() => setSelectedCoach(null)} style={{ background: "none", border: "none", color: COLORS.primary, cursor: "pointer", fontSize: 14, marginBottom: 12, padding: 0 }}>← All Coaches</button>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
+          <div style={{ width: 52, height: 52, borderRadius: "50%", background: COLORS.navy, display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.white, fontWeight: 700, fontSize: 20 }}>{coach.name[0]}</div>
+          <div>
+            <h2 style={{ margin: 0, color: COLORS.navy, fontSize: 22 }}>{coach.name}</h2>
+            <p style={{ margin: "2px 0 0", color: COLORS.muted, fontSize: 13 }}>{coach.role} • DREI-{coach.id} • Joined {coach.joined}</p>
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 24 }}>
+          <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+            <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.primary }}>{stats.done}</div>
+            <div style={{ fontSize: 12, color: COLORS.muted }}>Modules Done</div>
+          </div>
+          <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+            <div style={{ fontSize: 28, fontWeight: 800, color: stats.avgScore >= 80 ? COLORS.success : stats.avgScore >= 60 ? COLORS.gold : COLORS.error }}>{stats.avgScore !== null ? stats.avgScore + "%" : "—"}</div>
+            <div style={{ fontSize: 12, color: COLORS.muted }}>Avg Quiz Score</div>
+          </div>
+          <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+            <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.navy }}>{Math.round((stats.done / totalModules) * 100)}%</div>
+            <div style={{ fontSize: 12, color: COLORS.muted }}>Overall Progress</div>
+          </div>
+        </div>
+
+        {[["Beginner On-Water", BEGINNER_LESSONS, COLORS.primary], ["Ergo Fundamentals", ERGO_LESSONS, "#2ecc71"], ["Expert Modules", EXPERT_MODULES.filter(m => m.text), COLORS.gold]].map(([title, lessons, color]) => (
+          <div key={title} style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, marginBottom: 12 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+              <span style={{ fontWeight: 600, color: COLORS.navy, fontSize: 14 }}>{title}</span>
+              <span style={{ color: COLORS.muted, fontSize: 12 }}>{lessons.filter(l => coach.completed[l.id]).length}/{lessons.length}</span>
+            </div>
+            <Bar done={lessons.filter(l => coach.completed[l.id]).length} total={lessons.length} color={color} />
+            <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 4 }}>
+              {lessons.map(l => {
+                const c = coach.completed[l.id];
+                return (
+                  <div key={l.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0", fontSize: 12 }}>
+                    <div style={{ width: 18, height: 18, borderRadius: "50%", background: c ? COLORS.success : "#e8ecf1", display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.white, fontSize: 9, fontWeight: 700, flexShrink: 0 }}>{c ? "✓" : ""}</div>
+                    <span style={{ flex: 1, color: c ? COLORS.navy : COLORS.muted }}>{l.title}</span>
+                    {c && c.total > 0 && <span style={{ color: c.score / c.total >= 0.8 ? COLORS.success : c.score / c.total >= 0.6 ? COLORS.gold : COLORS.error, fontWeight: 600, fontSize: 11 }}>{c.score}/{c.total}</span>}
+                    {c && c.total === 0 && <span style={{ color: COLORS.success, fontSize: 11 }}>✓</span>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ maxWidth: 760, margin: "40px auto", padding: "0 24px" }}>
+      <h2 style={{ color: COLORS.navy, fontSize: 24, marginBottom: 4 }}>Organisation Dashboard</h2>
+      <p style={{ color: COLORS.muted, fontSize: 14, marginBottom: 24 }}>{org.name} • {org.coaches.length} coaches</p>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: 28 }}>
+        <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.primary }}>{org.coaches.length}</div>
+          <div style={{ fontSize: 11, color: COLORS.muted }}>Coaches</div>
+        </div>
+        <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.success }}>{org.coaches.filter(c => Object.keys(c.completed).length >= 12).length}</div>
+          <div style={{ fontSize: 11, color: COLORS.muted }}>Beginner Complete</div>
+        </div>
+        <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+          <div style={{ fontSize: 28, fontWeight: 800, color: "#2ecc71" }}>{org.coaches.filter(c => ERGO_LESSONS.every(l => c.completed[l.id])).length}</div>
+          <div style={{ fontSize: 11, color: COLORS.muted }}>Ergo Complete</div>
+        </div>
+        <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
+          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.gold }}>
+            {Math.round(org.coaches.reduce((s, c) => s + Object.keys(c.completed).length, 0) / org.coaches.length)}
+          </div>
+          <div style={{ fontSize: 11, color: COLORS.muted }}>Avg Modules Done</div>
+        </div>
+      </div>
+
+      <div style={{ background: COLORS.white, borderRadius: 12, border: `1px solid ${COLORS.accent}`, overflow: "hidden" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 80px", padding: "12px 16px", background: COLORS.accent, fontSize: 11, fontWeight: 600, color: COLORS.navy }}>
+          <span>Coach</span><span>Progress</span><span>Avg Score</span><span>Last Active</span><span></span>
+        </div>
+        {org.coaches.map(coach => {
+          const stats = getCoachStats(coach);
+          return (
+            <div key={coach.id} onClick={() => setSelectedCoach(coach.id)} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 80px", padding: "14px 16px", borderTop: `1px solid ${COLORS.accent}`, cursor: "pointer", alignItems: "center", fontSize: 13 }} onMouseEnter={e => e.currentTarget.style.background = COLORS.accent} onMouseLeave={e => e.currentTarget.style.background = COLORS.white}>
+              <div>
+                <div style={{ fontWeight: 600, color: COLORS.navy }}>{coach.name}</div>
+                <div style={{ fontSize: 11, color: COLORS.muted }}>{coach.role} • DREI-{coach.id}</div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <Bar done={stats.done} total={totalModules} color={COLORS.primary} />
+                <span style={{ fontSize: 11, color: COLORS.muted, whiteSpace: "nowrap" }}>{stats.done}/{totalModules}</span>
+              </div>
+              <div>
+                {stats.avgScore !== null ? (
+                  <span style={{ fontWeight: 600, color: stats.avgScore >= 80 ? COLORS.success : stats.avgScore >= 60 ? COLORS.gold : COLORS.error }}>{stats.avgScore}%</span>
+                ) : (
+                  <span style={{ color: COLORS.muted }}>—</span>
+                )}
+              </div>
+              <div style={{ color: COLORS.muted, fontSize: 12 }}>{coach.joined}</div>
+              <div style={{ color: COLORS.primary, fontSize: 12, textAlign: "right" }}>View →</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function DreiApp() {
   const [page, setPage] = useState("home");
   const [user, setUser] = useState(null);
@@ -437,6 +592,7 @@ export default function DreiApp() {
       {page === "lesson" && lesson && <LessonView lesson={lesson} setPage={setPage} setCourse={setCourse} completed={completed} setCompleted={setCompleted} />}
       {page === "experts" && <ExpertModules setPage={setPage} setLesson={setLesson} />}
       {page === "progress" && <Progress user={user} completed={completed} />}
+      {page === "dashboard" && <OrgDashboard setPage={setPage} />}
     </div>
   );
 }
