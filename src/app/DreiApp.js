@@ -189,20 +189,72 @@ function Header({ page, setPage, user }) {
 }
 
 function Home({ setPage }) {
+  const S = { card: { background: COLORS.white, borderRadius: 12, padding: 24, border: `1px solid ${COLORS.accent}` } };
   return (
     <div>
       <section style={{ background: `linear-gradient(135deg, ${COLORS.dark} 0%, ${COLORS.navy} 100%)`, padding: "80px 24px", textAlign: "center" }}>
         <h1 style={{ color: COLORS.white, fontSize: 48, fontWeight: 800, margin: 0, letterSpacing: 3 }}>DREI</h1>
         <p style={{ color: COLORS.primary, fontSize: 18, margin: "8px 0 0", fontWeight: 500 }}>Decent Rowing Education ID</p>
-        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 15, maxWidth: 540, margin: "24px auto 0", lineHeight: 1.7 }}>Structured coaching education from Olympic champions and world-class coaches. Video lessons, written guides, and assessed quizzes — in your own time.</p>
+        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 15, maxWidth: 540, margin: "24px auto 0", lineHeight: 1.7 }}>Structured coaching education from Olympic champions and world-class coaches. Video lessons, written guides, and assessed quizzes — in your own time, at your own pace.</p>
         <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 40, flexWrap: "wrap" }}>
-          <button onClick={() => setPage("courses")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>Browse Courses</button>
-          <button onClick={() => setPage("register")} style={{ background: "transparent", color: COLORS.white, border: `2px solid rgba(255,255,255,0.3)`, borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>Get Your DREI</button>
+          <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>Get Started — It's Free</button>
+          <button onClick={() => setPage("courses")} style={{ background: "transparent", color: COLORS.white, border: `2px solid rgba(255,255,255,0.3)`, borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>Browse Courses</button>
         </div>
       </section>
+
       <section style={{ padding: "60px 24px", maxWidth: 880, margin: "0 auto" }}>
-        <h2 style={{ textAlign: "center", color: COLORS.navy, fontSize: 26, marginBottom: 8 }}>Your Faculty</h2>
-        <p style={{ textAlign: "center", color: COLORS.muted, marginBottom: 36, fontSize: 14 }}>Learn from people who've done it at the highest level</p>
+        <h2 style={{ textAlign: "center", color: COLORS.navy, fontSize: 26, marginBottom: 8 }}>How DREI Works</h2>
+        <p style={{ textAlign: "center", color: COLORS.muted, marginBottom: 40, fontSize: 14, maxWidth: 600, margin: "0 auto 40px" }}>Whether you're an individual coach wanting to improve, or a head coach responsible for developing a team of coaches — DREI gives you a structured pathway with world-class content.</p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, marginBottom: 48 }}>
+          <div style={{ ...S.card, borderTop: `4px solid ${COLORS.primary}` }}>
+            <div style={{ fontSize: 24, marginBottom: 12 }}>🎓</div>
+            <h3 style={{ color: COLORS.navy, fontSize: 17, margin: "0 0 8px" }}>For Individual Coaches & Rowers</h3>
+            <div style={{ color: COLORS.text, fontSize: 13, lineHeight: 1.7 }}>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>1. Register</span> — Create your free account and receive your unique DREI number. This is your portable coaching education credential that stays with you wherever you go.</p>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>2. Learn</span> — Work through structured courses at your own pace. Each module has a written lesson, expert video, and a quiz. Start with the Beginner courses, then progress to Expert modules from Olympic champions.</p>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>3. Get Assessed</span> — Complete the quiz at the end of each module. Questions test real coaching judgment — not just memorisation. You need 60% to pass.</p>
+              <p style={{ margin: 0 }}><span style={{ fontWeight: 600 }}>4. Track Progress</span> — Your Progress page shows everything you've completed with scores. Your DREI number is your record — take it to any club, school, or organisation.</p>
+            </div>
+            <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 600, cursor: "pointer", marginTop: 16 }}>Register as Individual</button>
+          </div>
+
+          <div style={{ ...S.card, borderTop: `4px solid ${COLORS.gold}` }}>
+            <div style={{ fontSize: 24, marginBottom: 12 }}>🏫</div>
+            <h3 style={{ color: COLORS.navy, fontSize: 17, margin: "0 0 8px" }}>For Clubs, Schools & Organisations</h3>
+            <div style={{ color: COLORS.text, fontSize: 13, lineHeight: 1.7 }}>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>1. Set Up Your Organisation</span> — The head coach or program manager registers and creates the organisation. You'll receive a unique Organisation Code.</p>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>2. Share the Code</span> — Give your Organisation Code to your coaches. When they register, they enter this code and automatically appear on your dashboard.</p>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>3. Assign & Monitor</span> — Use the Dashboard to see which coaches have completed which modules, their quiz scores, and who needs attention. You can assign specific modules or let coaches work through the program at their own pace.</p>
+              <p style={{ margin: 0 }}><span style={{ fontWeight: 600 }}>4. Build Your Team</span> — Over time, your entire coaching team develops a consistent knowledge base. New coaches joining your program can see exactly what they need to complete to get up to speed.</p>
+            </div>
+            <button onClick={() => setPage("register")} style={{ background: COLORS.gold, color: COLORS.white, border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 600, cursor: "pointer", marginTop: 16 }}>Set Up Organisation</button>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: COLORS.accent, padding: "48px 24px" }}>
+        <div style={{ maxWidth: 880, margin: "0 auto" }}>
+          <h2 style={{ textAlign: "center", color: COLORS.navy, fontSize: 22, marginBottom: 8 }}>What You'll Learn</h2>
+          <p style={{ textAlign: "center", color: COLORS.muted, fontSize: 13, marginBottom: 32 }}>Three levels of courses from fundamentals to advanced coaching mastery</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
+            {[
+              { color: COLORS.primary, title: "Level 1 — Foundations", items: "Beginner On-Water Course (12 lessons) • Ergo Fundamentals (5 lessons) • Boat setup, grip, posture, catch, finish, balance, rhythm, racing" },
+              { color: "#2ecc71", title: "Level 2 — Coaching Skills", items: "Drew Ginn's sweep framework • Anthony Edwards' practical coaching • Catch technique in depth • Rhythm and boat speed • Rigging fundamentals • Injury prevention" },
+              { color: COLORS.gold, title: "Level 3 — Advanced", items: "Blade depth mastery • Coaching boat speed • Energy efficiency and power timing • Advanced rotation concepts • Conference masterclasses" },
+            ].map(c => (
+              <div key={c.title} style={{ background: COLORS.white, borderRadius: 10, padding: 20, borderLeft: `4px solid ${c.color}` }}>
+                <h3 style={{ color: COLORS.navy, fontSize: 15, margin: "0 0 8px" }}>{c.title}</h3>
+                <p style={{ color: COLORS.muted, fontSize: 12, lineHeight: 1.6, margin: 0 }}>{c.items}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "60px 24px", maxWidth: 880, margin: "0 auto" }}>
+        <h2 style={{ textAlign: "center", color: COLORS.navy, fontSize: 22, marginBottom: 8 }}>Your Faculty</h2>
+        <p style={{ textAlign: "center", color: COLORS.muted, marginBottom: 32, fontSize: 13 }}>Learn from people who've done it at the highest level</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
           {[["Drew Ginn", "3x Olympic Gold"], ["Anthony Edwards", "5x Olympian"], ["John Driessen", "2x Olympic Medal Coach"], ["Rhett Ayliffe", "Olympic Gold Coach"], ["Brett Crow", "World Champs Coach"], ["Lyall McCarthy", "Olympic Gold Coach"], ["Annabel Gibson", "Physio + 3x Aus Rep"], ["Joel Naukkarinen", "4x World Champion"]].map(([n, c]) => (
             <div key={n} style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
@@ -213,26 +265,187 @@ function Home({ setPage }) {
           ))}
         </div>
       </section>
+
+      <section style={{ background: COLORS.navy, padding: "48px 24px", textAlign: "center" }}>
+        <h2 style={{ color: COLORS.white, fontSize: 22, marginBottom: 8 }}>Frequently Asked Questions</h2>
+        <div style={{ maxWidth: 640, margin: "24px auto 0", textAlign: "left" }}>
+          {[
+            ["Is DREI free?", "Registration is free and gives you access to the beginner courses. Expert modules and organisation features are available with a subscription."],
+            ["Does DREI replace Rowing Australia accreditation?", "No. DREI complements national federation accreditation programs. Rowing Australia teaches the theory and awards formal qualifications. DREI teaches the practical craft of coaching — the skills you need on the water every day. Think of it as professional development that sits alongside your formal accreditation."],
+            ["I'm already an experienced coach. Is this for me?", "Yes. The Expert modules feature Olympic champions and world-class coaches sharing insights you won't find in standard coaching courses. Drew Ginn on rotation, Anthony Edwards on practical coaching methodology, John Driessen on rigging — these are perspectives that benefit coaches at any level."],
+            ["Can I use DREI for my school rowing program?", "Absolutely. Set up your organisation, get your coaches enrolled, and use the Dashboard to track their development. Many modules are specifically designed for coaches working with junior athletes."],
+            ["What's a DREI number?", "Your DREI (Decent Rowing Education ID) is a unique number assigned to you when you register. It's your portable credential — it records every module you complete, every quiz score, and your overall progress. If you move to a new club or school, your DREI goes with you."],
+            ["How long does a module take?", "Most modules take 15–30 minutes: read the written lesson (5–10 min), watch the video (5–15 min), and complete the quiz (5 min). You can stop and resume at any time."],
+          ].map(([q, a]) => (
+            <details key={q} style={{ marginBottom: 8, background: "rgba(255,255,255,0.05)", borderRadius: 8, padding: "12px 16px" }}>
+              <summary style={{ color: COLORS.white, fontWeight: 600, fontSize: 14, cursor: "pointer", listStyle: "none" }}>+ {q}</summary>
+              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, lineHeight: 1.7, margin: "8px 0 0" }}>{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ padding: "40px 24px", textAlign: "center" }}>
+        <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "16px 40px", fontSize: 16, fontWeight: 600, cursor: "pointer" }}>Get Started — Register Now</button>
+        <p style={{ color: COLORS.muted, fontSize: 12, marginTop: 8 }}>Free to register. Start learning immediately.</p>
+      </section>
     </div>
   );
 }
 
-function Registration({ setPage, setUser }) {
+function Registration({ setPage, setUser, setOrg }) {
+  const [step, setStep] = useState("choose");
   const [name, setName] = useState(""); const [email, setEmail] = useState(""); const [role, setRole] = useState("coach");
-  const register = () => { if (!name || !email) return; setUser({ name, email, role, id: String(Math.floor(10000 + Math.random() * 90000)) }); setPage("progress"); };
+  const [orgName, setOrgName] = useState(""); const [orgCode, setOrgCode] = useState("");
+  const [joinCode, setJoinCode] = useState("");
+
   const s = { width: "100%", padding: "12px 16px", borderRadius: 8, border: `1px solid #dde1e6`, fontSize: 15, boxSizing: "border-box", outline: "none" };
-  return (
-    <div style={{ maxWidth: 420, margin: "60px auto", padding: "0 24px" }}>
-      <h2 style={{ color: COLORS.navy, textAlign: "center" }}>Get Your DREI</h2>
-      <p style={{ color: COLORS.muted, textAlign: "center", marginBottom: 32, fontSize: 14 }}>Your portable coaching education credential</p>
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <input placeholder="Full Name" value={name} onChange={e => setName(e.target.value)} style={s} />
-        <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} style={s} />
-        <select value={role} onChange={e => setRole(e.target.value)} style={{ ...s, background: COLORS.white }}><option value="coach">Coach</option><option value="rower">Rower</option><option value="both">Both</option></select>
-        <button onClick={register} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px", fontSize: 15, fontWeight: 600, cursor: "pointer", marginTop: 8 }}>Register</button>
+  const btn = (bg, text, onClick, disabled) => ({ background: disabled ? COLORS.muted : bg, color: text, border: "none", borderRadius: 8, padding: "14px", fontSize: 15, fontWeight: 600, cursor: disabled ? "not-allowed" : "pointer", width: "100%" });
+
+  const generateId = () => String(Math.floor(10000 + Math.random() * 90000));
+  const generateOrgCode = () => {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "";
+    for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+    return code;
+  };
+
+  const registerIndividual = () => {
+    if (!name || !email) return;
+    const id = generateId();
+    const userData = { name, email, role, id, orgCode: joinCode || null };
+    setUser(userData);
+    setPage("progress");
+  };
+
+  const registerOrg = () => {
+    if (!name || !email || !orgName) return;
+    const id = generateId();
+    const code = generateOrgCode();
+    const userData = { name, email, role: "head_coach", id, orgCode: code, isHeadCoach: true };
+    setUser(userData);
+    setOrg({ name: orgName, code, headCoach: id });
+    setOrgCode(code);
+    setStep("org_done");
+  };
+
+  if (step === "choose") {
+    return (
+      <div style={{ maxWidth: 560, margin: "60px auto", padding: "0 24px" }}>
+        <h2 style={{ color: COLORS.navy, textAlign: "center", fontSize: 26 }}>Get Started with DREI</h2>
+        <p style={{ color: COLORS.muted, textAlign: "center", marginBottom: 32, fontSize: 14 }}>Choose how you'd like to use DREI</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div onClick={() => setStep("individual")} style={{ background: COLORS.white, borderRadius: 12, padding: 24, border: `2px solid ${COLORS.accent}`, cursor: "pointer", transition: "border-color 0.2s" }} onMouseEnter={e => e.currentTarget.style.borderColor = COLORS.primary} onMouseLeave={e => e.currentTarget.style.borderColor = COLORS.accent}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 12, background: COLORS.primary, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎓</div>
+              <div>
+                <h3 style={{ margin: 0, color: COLORS.navy, fontSize: 16 }}>I'm a Coach or Rower</h3>
+                <p style={{ margin: "4px 0 0", color: COLORS.muted, fontSize: 13 }}>Register as an individual. You'll get your DREI number and can start learning immediately. If your club or school has given you an Organisation Code, you can enter it during registration.</p>
+              </div>
+            </div>
+          </div>
+          <div onClick={() => setStep("org")} style={{ background: COLORS.white, borderRadius: 12, padding: 24, border: `2px solid ${COLORS.accent}`, cursor: "pointer", transition: "border-color 0.2s" }} onMouseEnter={e => e.currentTarget.style.borderColor = COLORS.gold} onMouseLeave={e => e.currentTarget.style.borderColor = COLORS.accent}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 12, background: COLORS.gold, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🏫</div>
+              <div>
+                <h3 style={{ margin: 0, color: COLORS.navy, fontSize: 16 }}>I'm Setting Up a Club or School</h3>
+                <p style={{ margin: "4px 0 0", color: COLORS.muted, fontSize: 13 }}>Register as a Head Coach and create your organisation. You'll receive an Organisation Code to share with your coaches, and access to the Dashboard to track their progress.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style={{ textAlign: "center", color: COLORS.muted, fontSize: 12, marginTop: 24 }}>Already registered? Your DREI number is shown in the top right when you return.</p>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (step === "individual") {
+    return (
+      <div style={{ maxWidth: 420, margin: "60px auto", padding: "0 24px" }}>
+        <button onClick={() => setStep("choose")} style={{ background: "none", border: "none", color: COLORS.primary, cursor: "pointer", fontSize: 14, marginBottom: 12, padding: 0 }}>← Back</button>
+        <h2 style={{ color: COLORS.navy, fontSize: 22 }}>Register as Individual</h2>
+        <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 24 }}>You'll receive your unique DREI number and can start learning immediately.</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Full Name *</label>
+            <input placeholder="e.g. Sarah Mitchell" value={name} onChange={e => setName(e.target.value)} style={s} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Email *</label>
+            <input placeholder="e.g. sarah@email.com" type="email" value={email} onChange={e => setEmail(e.target.value)} style={s} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>I am a...</label>
+            <select value={role} onChange={e => setRole(e.target.value)} style={{ ...s, background: COLORS.white }}><option value="coach">Coach</option><option value="rower">Rower</option><option value="both">Coach & Rower</option></select>
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Organisation Code <span style={{ fontWeight: 400, color: COLORS.muted }}>(optional — enter if your club or school gave you one)</span></label>
+            <input placeholder="e.g. XK7M2P" value={joinCode} onChange={e => setJoinCode(e.target.value.toUpperCase())} style={{ ...s, letterSpacing: 3, textTransform: "uppercase" }} maxLength={6} />
+          </div>
+          <button onClick={registerIndividual} disabled={!name || !email} style={btn(COLORS.primary, COLORS.white, null, !name || !email)}>Register & Get My DREI</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "org") {
+    return (
+      <div style={{ maxWidth: 420, margin: "60px auto", padding: "0 24px" }}>
+        <button onClick={() => setStep("choose")} style={{ background: "none", border: "none", color: COLORS.primary, cursor: "pointer", fontSize: 14, marginBottom: 12, padding: 0 }}>← Back</button>
+        <h2 style={{ color: COLORS.navy, fontSize: 22 }}>Set Up Your Organisation</h2>
+        <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 24 }}>Create your club, school, or program. You'll receive an Organisation Code to share with your coaches.</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Organisation Name *</label>
+            <input placeholder="e.g. Launceston Rowing Club" value={orgName} onChange={e => setOrgName(e.target.value)} style={s} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Your Name (Head Coach) *</label>
+            <input placeholder="e.g. Ken Davey" value={name} onChange={e => setName(e.target.value)} style={s} />
+          </div>
+          <div>
+            <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Your Email *</label>
+            <input placeholder="e.g. ken@club.com" type="email" value={email} onChange={e => setEmail(e.target.value)} style={s} />
+          </div>
+          <button onClick={registerOrg} disabled={!name || !email || !orgName} style={btn(COLORS.gold, COLORS.white, null, !name || !email || !orgName)}>Create Organisation</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "org_done") {
+    return (
+      <div style={{ maxWidth: 480, margin: "60px auto", padding: "0 24px", textAlign: "center" }}>
+        <div style={{ width: 64, height: 64, borderRadius: "50%", background: COLORS.success, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", color: COLORS.white, fontSize: 28 }}>✓</div>
+        <h2 style={{ color: COLORS.navy, fontSize: 24 }}>Organisation Created!</h2>
+        <p style={{ color: COLORS.muted, fontSize: 14, marginBottom: 24 }}>{orgName} is set up and ready to go.</p>
+
+        <div style={{ background: COLORS.accent, borderRadius: 12, padding: 24, marginBottom: 24 }}>
+          <p style={{ color: COLORS.navy, fontWeight: 600, fontSize: 14, margin: "0 0 4px" }}>Your Organisation Code</p>
+          <div style={{ fontSize: 36, fontWeight: 800, letterSpacing: 6, color: COLORS.primary, margin: "8px 0" }}>{orgCode}</div>
+          <p style={{ color: COLORS.muted, fontSize: 12, margin: 0 }}>Share this code with your coaches. When they register and enter this code, they'll automatically appear on your Dashboard.</p>
+        </div>
+
+        <div style={{ background: COLORS.white, borderRadius: 12, padding: 20, border: `1px solid ${COLORS.accent}`, marginBottom: 24, textAlign: "left" }}>
+          <p style={{ fontWeight: 600, color: COLORS.navy, fontSize: 14, margin: "0 0 8px" }}>What to tell your coaches:</p>
+          <div style={{ color: COLORS.text, fontSize: 13, lineHeight: 1.7 }}>
+            <p style={{ margin: "0 0 4px" }}>1. Go to this website</p>
+            <p style={{ margin: "0 0 4px" }}>2. Click "Get Started" and choose "I'm a Coach or Rower"</p>
+            <p style={{ margin: "0 0 4px" }}>3. Fill in your name and email</p>
+            <p style={{ margin: "0 0 4px" }}>4. Enter the Organisation Code: <strong>{orgCode}</strong></p>
+            <p style={{ margin: 0 }}>5. Start working through the courses</p>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: 12 }}>
+          <button onClick={() => setPage("dashboard")} style={{ flex: 1, background: COLORS.gold, color: COLORS.white, border: "none", borderRadius: 8, padding: "12px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Go to Dashboard</button>
+          <button onClick={() => setPage("courses")} style={{ flex: 1, background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "12px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Browse Courses</button>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }
 
 function Courses({ setPage, setCourse }) {
@@ -439,9 +652,9 @@ const MOCK_ORG = {
   ]
 };
 
-function OrgDashboard({ setPage }) {
+function OrgDashboard({ setPage, user, org }) {
   const [selectedCoach, setSelectedCoach] = useState(null);
-  const org = MOCK_ORG;
+  const orgData = { name: org ? org.name : MOCK_ORG.name, coaches: MOCK_ORG.coaches };
   const allLessons = [...BEGINNER_LESSONS, ...ERGO_LESSONS, ...EXPERT_MODULES.filter(m => m.text)];
   const totalModules = allLessons.length;
 
@@ -462,7 +675,7 @@ function OrgDashboard({ setPage }) {
   );
 
   if (selectedCoach) {
-    const coach = org.coaches.find(c => c.id === selectedCoach);
+    const coach = orgData.coaches.find(c => c.id === selectedCoach);
     const stats = getCoachStats(coach);
     return (
       <div style={{ maxWidth: 760, margin: "40px auto", padding: "0 24px" }}>
@@ -519,24 +732,24 @@ function OrgDashboard({ setPage }) {
   return (
     <div style={{ maxWidth: 760, margin: "40px auto", padding: "0 24px" }}>
       <h2 style={{ color: COLORS.navy, fontSize: 24, marginBottom: 4 }}>Organisation Dashboard</h2>
-      <p style={{ color: COLORS.muted, fontSize: 14, marginBottom: 24 }}>{org.name} • {org.coaches.length} coaches</p>
+      <p style={{ color: COLORS.muted, fontSize: 14, marginBottom: 24 }}>{orgData.name} • {orgData.coaches.length} coaches</p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: 28 }}>
         <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
-          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.primary }}>{org.coaches.length}</div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.primary }}>{orgData.coaches.length}</div>
           <div style={{ fontSize: 11, color: COLORS.muted }}>Coaches</div>
         </div>
         <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
-          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.success }}>{org.coaches.filter(c => Object.keys(c.completed).length >= 12).length}</div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.success }}>{orgData.coaches.filter(c => Object.keys(c.completed).length >= 12).length}</div>
           <div style={{ fontSize: 11, color: COLORS.muted }}>Beginner Complete</div>
         </div>
         <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
-          <div style={{ fontSize: 28, fontWeight: 800, color: "#2ecc71" }}>{org.coaches.filter(c => ERGO_LESSONS.every(l => c.completed[l.id])).length}</div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: "#2ecc71" }}>{orgData.coaches.filter(c => ERGO_LESSONS.every(l => c.completed[l.id])).length}</div>
           <div style={{ fontSize: 11, color: COLORS.muted }}>Ergo Complete</div>
         </div>
         <div style={{ background: COLORS.white, borderRadius: 10, padding: 16, border: `1px solid ${COLORS.accent}`, textAlign: "center" }}>
           <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.gold }}>
-            {Math.round(org.coaches.reduce((s, c) => s + Object.keys(c.completed).length, 0) / org.coaches.length)}
+            {Math.round(orgData.coaches.reduce((s, c) => s + Object.keys(c.completed).length, 0) / orgData.coaches.length)}
           </div>
           <div style={{ fontSize: 11, color: COLORS.muted }}>Avg Modules Done</div>
         </div>
@@ -546,7 +759,7 @@ function OrgDashboard({ setPage }) {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 80px", padding: "12px 16px", background: COLORS.accent, fontSize: 11, fontWeight: 600, color: COLORS.navy }}>
           <span>Coach</span><span>Progress</span><span>Avg Score</span><span>Last Active</span><span></span>
         </div>
-        {org.coaches.map(coach => {
+        {orgData.coaches.map(coach => {
           const stats = getCoachStats(coach);
           return (
             <div key={coach.id} onClick={() => setSelectedCoach(coach.id)} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 80px", padding: "14px 16px", borderTop: `1px solid ${COLORS.accent}`, cursor: "pointer", alignItems: "center", fontSize: 13 }} onMouseEnter={e => e.currentTarget.style.background = COLORS.accent} onMouseLeave={e => e.currentTarget.style.background = COLORS.white}>
@@ -578,6 +791,7 @@ function OrgDashboard({ setPage }) {
 export default function DreiApp() {
   const [page, setPage] = useState("home");
   const [user, setUser] = useState(null);
+  const [org, setOrg] = useState(null);
   const [course, setCourse] = useState("beginner");
   const [lesson, setLesson] = useState(null);
   const [completed, setCompleted] = useState({});
@@ -586,13 +800,13 @@ export default function DreiApp() {
     <div style={{ minHeight: "100vh", background: COLORS.light, fontFamily: "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif" }}>
       <Header page={page} setPage={setPage} user={user} />
       {page === "home" && <Home setPage={setPage} />}
-      {page === "register" && <Registration setPage={setPage} setUser={setUser} />}
+      {page === "register" && <Registration setPage={setPage} setUser={setUser} setOrg={setOrg} />}
       {page === "courses" && <Courses setPage={setPage} setCourse={setCourse} />}
       {page === "course" && <CourseView course={course} setPage={setPage} setLesson={setLesson} completed={completed} />}
       {page === "lesson" && lesson && <LessonView lesson={lesson} setPage={setPage} setCourse={setCourse} completed={completed} setCompleted={setCompleted} />}
       {page === "experts" && <ExpertModules setPage={setPage} setLesson={setLesson} />}
       {page === "progress" && <Progress user={user} completed={completed} />}
-      {page === "dashboard" && <OrgDashboard setPage={setPage} />}
+      {page === "dashboard" && <OrgDashboard setPage={setPage} user={user} org={org} />}
     </div>
   );
 }
