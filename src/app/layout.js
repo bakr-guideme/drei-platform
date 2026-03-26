@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'DREI — Decent Rowing Education ID',
+  title: 'Decent Rowing Academy — Coaching Education',
   description: 'Structured coaching education from Olympic champions and world-class coaches.',
 };
 

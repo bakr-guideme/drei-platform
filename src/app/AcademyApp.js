@@ -171,17 +171,17 @@ function Header({ page, setPage, user }) {
   return (
     <header style={{ background: COLORS.navy, padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64, position: "sticky", top: 0, zIndex: 100 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => setPage("home")}>
-        <div style={{ width: 36, height: 36, borderRadius: "50%", background: COLORS.primary, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: COLORS.white, fontSize: 16 }}>D</div>
-        <span style={{ color: COLORS.white, fontWeight: 700, fontSize: 18, letterSpacing: 2 }}>DREI</span>
+        <div style={{ width: 36, height: 36, borderRadius: "50%", background: COLORS.primary, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: COLORS.white, fontSize: 13 }}>DR</div>
+        <span style={{ color: COLORS.white, fontWeight: 700, fontSize: 16, letterSpacing: 1 }}>Decent Rowing Academy</span>
       </div>
       <nav style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
         {[["Courses", "courses"], ["Expert Modules", "experts"], ["Progress", "progress"], ["Dashboard", "dashboard"]].map(([label, p]) => (
           <button key={p} onClick={() => setPage(p)} style={{ background: "none", border: "none", color: page === p ? COLORS.primary : "rgba(255,255,255,0.7)", cursor: "pointer", fontSize: 14, fontWeight: page === p ? 700 : 400, padding: "4px 0", borderBottom: page === p ? `2px solid ${COLORS.primary}` : "2px solid transparent" }}>{label}</button>
         ))}
         {user ? (
-          <span style={{ color: COLORS.gold, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap" }}>DREI-{user.id}</span>
+          <span style={{ color: COLORS.gold, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap" }}>DRA-{user.id}</span>
         ) : (
-          <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 6, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>Get Your DREI</button>
+          <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 6, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>Join the Academy</button>
         )}
       </nav>
     </header>
@@ -193,8 +193,8 @@ function Home({ setPage }) {
   return (
     <div>
       <section style={{ background: `linear-gradient(135deg, ${COLORS.dark} 0%, ${COLORS.navy} 100%)`, padding: "80px 24px", textAlign: "center" }}>
-        <h1 style={{ color: COLORS.white, fontSize: 48, fontWeight: 800, margin: 0, letterSpacing: 3 }}>DREI</h1>
-        <p style={{ color: COLORS.primary, fontSize: 18, margin: "8px 0 0", fontWeight: 500 }}>Decent Rowing Education ID</p>
+        <h1 style={{ color: COLORS.white, fontSize: 40, fontWeight: 800, margin: 0, letterSpacing: 1 }}>Decent Rowing Academy</h1>
+        <p style={{ color: COLORS.primary, fontSize: 18, margin: "8px 0 0", fontWeight: 500 }}>Coaching education from the best in the world</p>
         <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 15, maxWidth: 540, margin: "24px auto 0", lineHeight: 1.7 }}>Structured coaching education from Olympic champions and world-class coaches. Video lessons, written guides, and assessed quizzes — in your own time, at your own pace.</p>
         <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 40, flexWrap: "wrap" }}>
           <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>Get Started — It's Free</button>
@@ -203,18 +203,18 @@ function Home({ setPage }) {
       </section>
 
       <section style={{ padding: "60px 24px", maxWidth: 880, margin: "0 auto" }}>
-        <h2 style={{ textAlign: "center", color: COLORS.navy, fontSize: 26, marginBottom: 8 }}>How DREI Works</h2>
-        <p style={{ textAlign: "center", color: COLORS.muted, marginBottom: 40, fontSize: 14, maxWidth: 600, margin: "0 auto 40px" }}>Whether you're an individual coach wanting to improve, or a head coach responsible for developing a team of coaches — DREI gives you a structured pathway with world-class content.</p>
+        <h2 style={{ textAlign: "center", color: COLORS.navy, fontSize: 26, marginBottom: 8 }}>How the Academy Works</h2>
+        <p style={{ textAlign: "center", color: COLORS.muted, marginBottom: 40, fontSize: 14, maxWidth: 600, margin: "0 auto 40px" }}>Whether you're an individual coach wanting to improve, or a head coach responsible for developing a team of coaches — the Academy gives you a structured pathway with world-class content.</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, marginBottom: 48 }}>
           <div style={{ ...S.card, borderTop: `4px solid ${COLORS.primary}` }}>
             <div style={{ fontSize: 24, marginBottom: 12 }}>🎓</div>
             <h3 style={{ color: COLORS.navy, fontSize: 17, margin: "0 0 8px" }}>For Individual Coaches & Rowers</h3>
             <div style={{ color: COLORS.text, fontSize: 13, lineHeight: 1.7 }}>
-              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>1. Register</span> — Create your free account and receive your unique DREI number. This is your portable coaching education credential that stays with you wherever you go.</p>
+              <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>1. Register</span> — Create your free account and receive your unique DRA number. This is your portable coaching education credential that stays with you wherever you go.</p>
               <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>2. Learn</span> — Work through structured courses at your own pace. Each module has a written lesson, expert video, and a quiz. Start with the Beginner courses, then progress to Expert modules from Olympic champions.</p>
               <p style={{ margin: "0 0 8px" }}><span style={{ fontWeight: 600 }}>3. Get Assessed</span> — Complete the quiz at the end of each module. Questions test real coaching judgment — not just memorisation. You need 60% to pass.</p>
-              <p style={{ margin: 0 }}><span style={{ fontWeight: 600 }}>4. Track Progress</span> — Your Progress page shows everything you've completed with scores. Your DREI number is your record — take it to any club, school, or organisation.</p>
+              <p style={{ margin: 0 }}><span style={{ fontWeight: 600 }}>4. Track Progress</span> — Your Progress page shows everything you've completed with scores. Your DRA number is your record — take it to any club, school, or organisation.</p>
             </div>
             <button onClick={() => setPage("register")} style={{ background: COLORS.primary, color: COLORS.white, border: "none", borderRadius: 8, padding: "10px 20px", fontSize: 13, fontWeight: 600, cursor: "pointer", marginTop: 16 }}>Register as Individual</button>
           </div>
@@ -270,11 +270,11 @@ function Home({ setPage }) {
         <h2 style={{ color: COLORS.white, fontSize: 22, marginBottom: 8 }}>Frequently Asked Questions</h2>
         <div style={{ maxWidth: 640, margin: "24px auto 0", textAlign: "left" }}>
           {[
-            ["Is DREI free?", "Registration is free and gives you access to the beginner courses. Expert modules and organisation features are available with a subscription."],
-            ["Does DREI replace Rowing Australia accreditation?", "No. DREI complements national federation accreditation programs. Rowing Australia teaches the theory and awards formal qualifications. DREI teaches the practical craft of coaching — the skills you need on the water every day. Think of it as professional development that sits alongside your formal accreditation."],
+            ["Is the Academy free?", "Registration is free and gives you access to the beginner courses. Expert modules and organisation features are available with a subscription."],
+            ["Does the Academy replace my national coaching accreditation?", "No. The Academy complements national federation accreditation programs — USRowing, Rowing Australia, British Rowing, and others. Your federation teaches the theory and awards formal qualifications. The Academy teaches the practical craft of coaching — the skills you need on the water every day. In the US, Academy modules may count toward your annual Continuing Education Credits (CECs) required to maintain USRowing certification."],
             ["I'm already an experienced coach. Is this for me?", "Yes. The Expert modules feature Olympic champions and world-class coaches sharing insights you won't find in standard coaching courses. Drew Ginn on rotation, Anthony Edwards on practical coaching methodology, John Driessen on rigging — these are perspectives that benefit coaches at any level."],
-            ["Can I use DREI for my school rowing program?", "Absolutely. Set up your organisation, get your coaches enrolled, and use the Dashboard to track their development. Many modules are specifically designed for coaches working with junior athletes."],
-            ["What's a DREI number?", "Your DREI (Decent Rowing Education ID) is a unique number assigned to you when you register. It's your portable credential — it records every module you complete, every quiz score, and your overall progress. If you move to a new club or school, your DREI goes with you."],
+            ["Can I use the Academy for my school rowing program?", "Absolutely. Set up your organisation, get your coaches enrolled, and use the Dashboard to track their development. Many modules are specifically designed for coaches working with junior athletes."],
+            ["What's a DRA number?", "Your DRA (Decent Rowing Academy) number is a unique identifier assigned to you when you register. It's your portable credential — it records every module you complete, every quiz score, and your overall progress. If you move to a new club or school, your DRA goes with you."],
             ["How long does a module take?", "Most modules take 15–30 minutes: read the written lesson (5–10 min), watch the video (5–15 min), and complete the quiz (5 min). You can stop and resume at any time."],
           ].map(([q, a]) => (
             <details key={q} style={{ marginBottom: 8, background: "rgba(255,255,255,0.05)", borderRadius: 8, padding: "12px 16px" }}>
@@ -332,15 +332,15 @@ function Registration({ setPage, setUser, setOrg }) {
   if (step === "choose") {
     return (
       <div style={{ maxWidth: 560, margin: "60px auto", padding: "0 24px" }}>
-        <h2 style={{ color: COLORS.navy, textAlign: "center", fontSize: 26 }}>Get Started with DREI</h2>
-        <p style={{ color: COLORS.muted, textAlign: "center", marginBottom: 32, fontSize: 14 }}>Choose how you'd like to use DREI</p>
+        <h2 style={{ color: COLORS.navy, textAlign: "center", fontSize: 26 }}>Get Started with Decent Rowing Academy</h2>
+        <p style={{ color: COLORS.muted, textAlign: "center", marginBottom: 32, fontSize: 14 }}>Choose how you'd like to use the Academy</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div onClick={() => setStep("individual")} style={{ background: COLORS.white, borderRadius: 12, padding: 24, border: `2px solid ${COLORS.accent}`, cursor: "pointer", transition: "border-color 0.2s" }} onMouseEnter={e => e.currentTarget.style.borderColor = COLORS.primary} onMouseLeave={e => e.currentTarget.style.borderColor = COLORS.accent}>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
               <div style={{ width: 48, height: 48, borderRadius: 12, background: COLORS.primary, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎓</div>
               <div>
                 <h3 style={{ margin: 0, color: COLORS.navy, fontSize: 16 }}>I'm a Coach or Rower</h3>
-                <p style={{ margin: "4px 0 0", color: COLORS.muted, fontSize: 13 }}>Register as an individual. You'll get your DREI number and can start learning immediately. If your club or school has given you an Organisation Code, you can enter it during registration.</p>
+                <p style={{ margin: "4px 0 0", color: COLORS.muted, fontSize: 13 }}>Register as an individual. You'll get your DRA number and can start learning immediately. If your club or school has given you an Organisation Code, you can enter it during registration.</p>
               </div>
             </div>
           </div>
@@ -354,7 +354,7 @@ function Registration({ setPage, setUser, setOrg }) {
             </div>
           </div>
         </div>
-        <p style={{ textAlign: "center", color: COLORS.muted, fontSize: 12, marginTop: 24 }}>Already registered? Your DREI number is shown in the top right when you return.</p>
+        <p style={{ textAlign: "center", color: COLORS.muted, fontSize: 12, marginTop: 24 }}>Already registered? Your DRA number is shown in the top right when you return.</p>
       </div>
     );
   }
@@ -364,7 +364,7 @@ function Registration({ setPage, setUser, setOrg }) {
       <div style={{ maxWidth: 420, margin: "60px auto", padding: "0 24px" }}>
         <button onClick={() => setStep("choose")} style={{ background: "none", border: "none", color: COLORS.primary, cursor: "pointer", fontSize: 14, marginBottom: 12, padding: 0 }}>← Back</button>
         <h2 style={{ color: COLORS.navy, fontSize: 22 }}>Register as Individual</h2>
-        <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 24 }}>You'll receive your unique DREI number and can start learning immediately.</p>
+        <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 24 }}>You'll receive your unique DRA number and can start learning immediately.</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <div>
             <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Full Name *</label>
@@ -382,7 +382,7 @@ function Registration({ setPage, setUser, setOrg }) {
             <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 4 }}>Organisation Code <span style={{ fontWeight: 400, color: COLORS.muted }}>(optional — enter if your club or school gave you one)</span></label>
             <input placeholder="e.g. XK7M2P" value={joinCode} onChange={e => setJoinCode(e.target.value.toUpperCase())} style={{ ...s, letterSpacing: 3, textTransform: "uppercase" }} maxLength={6} />
           </div>
-          <button onClick={registerIndividual} disabled={!name || !email} style={btn(COLORS.primary, COLORS.white, null, !name || !email)}>Register & Get My DREI</button>
+          <button onClick={registerIndividual} disabled={!name || !email} style={btn(COLORS.primary, COLORS.white, null, !name || !email)}>Register & Join the Academy</button>
         </div>
       </div>
     );
@@ -618,9 +618,9 @@ function Progress({ user, completed }) {
     <div style={{ maxWidth: 560, margin: "40px auto", padding: "0 24px" }}>
       {user && (
         <div style={{ background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.dark})`, borderRadius: 16, padding: 28, textAlign: "center", marginBottom: 28 }}>
-          <div style={{ width: 56, height: 56, borderRadius: "50%", background: COLORS.primary, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", fontSize: 22, fontWeight: 800, color: COLORS.white }}>{user.name[0]}</div>
+          <div style={{ width: 56, height: 56, borderRadius: "50%", background: COLORS.primary, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", fontSize: 14, fontWeight: 800, color: COLORS.white }}>DR</div>
           <h2 style={{ color: COLORS.white, margin: 0, fontSize: 20 }}>{user.name}</h2>
-          <p style={{ color: COLORS.gold, fontWeight: 700, fontSize: 16, margin: "6px 0 0", letterSpacing: 2 }}>DREI-{user.id}</p>
+          <p style={{ color: COLORS.gold, fontWeight: 700, fontSize: 16, margin: "6px 0 0", letterSpacing: 2 }}>DRA-{user.id}</p>
         </div>
       )}
       {[["Beginner On-Water", bd, BEGINNER_LESSONS.length, COLORS.primary], ["Ergo Fundamentals", ed, ERGO_LESSONS.length, "#2ecc71"], ["Expert Modules", 0, EXPERT_MODULES.length, COLORS.gold]].map(([t, d, n, c]) => (
@@ -684,7 +684,7 @@ function OrgDashboard({ setPage, user, org }) {
           <div style={{ width: 52, height: 52, borderRadius: "50%", background: COLORS.navy, display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.white, fontWeight: 700, fontSize: 20 }}>{coach.name[0]}</div>
           <div>
             <h2 style={{ margin: 0, color: COLORS.navy, fontSize: 22 }}>{coach.name}</h2>
-            <p style={{ margin: "2px 0 0", color: COLORS.muted, fontSize: 13 }}>{coach.role} • DREI-{coach.id} • Joined {coach.joined}</p>
+            <p style={{ margin: "2px 0 0", color: COLORS.muted, fontSize: 13 }}>{coach.role} • DRA-{coach.id} • Joined {coach.joined}</p>
           </div>
         </div>
 
@@ -765,7 +765,7 @@ function OrgDashboard({ setPage, user, org }) {
             <div key={coach.id} onClick={() => setSelectedCoach(coach.id)} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 80px", padding: "14px 16px", borderTop: `1px solid ${COLORS.accent}`, cursor: "pointer", alignItems: "center", fontSize: 13 }} onMouseEnter={e => e.currentTarget.style.background = COLORS.accent} onMouseLeave={e => e.currentTarget.style.background = COLORS.white}>
               <div>
                 <div style={{ fontWeight: 600, color: COLORS.navy }}>{coach.name}</div>
-                <div style={{ fontSize: 11, color: COLORS.muted }}>{coach.role} • DREI-{coach.id}</div>
+                <div style={{ fontSize: 11, color: COLORS.muted }}>{coach.role} • DRA-{coach.id}</div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <Bar done={stats.done} total={totalModules} color={COLORS.primary} />
@@ -788,7 +788,7 @@ function OrgDashboard({ setPage, user, org }) {
   );
 }
 
-export default function DreiApp() {
+export default function AcademyApp() {
   const [page, setPage] = useState("home");
   const [user, setUser] = useState(null);
   const [org, setOrg] = useState(null);

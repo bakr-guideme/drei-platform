@@ -1,5 +1,5 @@
-import DreiApp from './DreiApp';
+import AcademyApp from './AcademyApp';
 
 export default function Page() {
-  return <DreiApp />;
+  return <AcademyApp />;
 }
